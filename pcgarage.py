@@ -12,11 +12,11 @@ def crawl_pcgarage():
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36',
     }
 
-    smtp = smtplib.SMTP('smtp.gmail.com', 587)
-    smtp.ehlo()
-    smtp.starttls()
-    smtp.ehlo()
-    smtp.login(sender_email, '')
+    # smtp = smtplib.SMTP('smtp.gmail.com', 587)
+    # smtp.ehlo()
+    # smtp.starttls()
+    # smtp.ehlo()
+    # smtp.login(sender_email, '')
 
     target = 'https://www.pcgarage.ro/placi-video/asus/geforce-rtx-3080-tuf-gaming-10gb-gddr6x-320-bit/'
 
@@ -32,3 +32,9 @@ def crawl_pcgarage():
                 msg['To'] = receiver_email
                 msg['From'] = sender_email
                 smtp.sendmail(sender_email, receiver_email, str(msg))
+    else:
+        msg = MIMEText(target)
+        msg['Subject'] = "Site failure"
+        msg['To'] = receiver_email
+        msg['From'] = sender_email
+        smtp.sendmail(sender_email, receiver_email, str(msg))

@@ -32,4 +32,9 @@ def crawl_emag():
             msg['To'] = receiver_email
             msg['From'] = sender_email
             smtp.sendmail(sender_email, receiver_email, str(msg))
-
+    else:
+        msg = MIMEText(target)
+        msg['Subject'] = "Site failure"
+        msg['To'] = receiver_email
+        msg['From'] = sender_email
+        smtp.sendmail(sender_email, receiver_email, str(msg))
